@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Package github.com/openbase/ob-gae/ob-gae-demo-app</title>
+		<title>Package github.com/openbase/ob-gae</title>
 		<meta charset="UTF-8" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link type="text/css" rel="stylesheet" href="http://golang.org/doc/style.css" />
@@ -10,7 +10,7 @@
 	<body>
 		<div id="page" class="wide">
 		<div class="container">
-		<h1>Package github.com/openbase/ob-gae/ob-gae-demo-app</h1>
+		<h1>Package github.com/openbase/ob-gae</h1>
 		<div id="nav"></div>
 		<!--
 	Copyright 2009 The Go Authors. All rights reserved.
@@ -28,7 +28,7 @@
 		
 		<div id="short-nav">
 			<dl>
-			<dd><code>import "github.com/openbase/ob-gae/ob-gae-demo-app"</code></dd>
+			<dd><code>import "github.com/openbase/ob-gae"</code></dd>
 			</dl>
 			<dl>
 			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
@@ -47,7 +47,7 @@
 			<div class="expanded">
 				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
 				<p>
-AppEngine demo app at <a href="http://ob-demo.appspot.com">http://ob-demo.appspot.com</a>
+To run OpenBase on AppEngine, import this package into yourapp.go, then call Init().
 </p>
 
 			</div>
@@ -67,6 +67,9 @@ AppEngine demo app at <a href="http://ob-demo.appspot.com">http://ob-demo.appspo
 			
 			
 			
+				
+				<dd><a href="#Init">func Init(hiveDir string)</a></dd>
+			
 			
 			
 			</dl>
@@ -79,9 +82,11 @@ AppEngine demo app at <a href="http://ob-demo.appspot.com">http://ob-demo.appspo
 			<p>
 			<span style="font-size:90%">
 			
-				<a href="/target/app.go">app.go</a>
+				<a href="/target/diag.go">diag.go</a>
 			
 				<a href="/target/doc.go">doc.go</a>
+			
+				<a href="/target/gae.go">gae.go</a>
 			
 			</span>
 			</p>
@@ -91,6 +96,16 @@ AppEngine demo app at <a href="http://ob-demo.appspot.com">http://ob-demo.appspo
 
 		
 		
+		
+			
+			
+			<h2 id="Init">func <a href="/target/gae.go?s=203:228#L2">Init</a></h2>
+			<pre>func Init(hiveDir <a href="/pkg/builtin/#string">string</a>)</pre>
+			<p>
+Call this in the init() func of your GAE app --- see demo-app/app.go
+</p>
+
+			
 		
 		
 	
@@ -119,7 +134,7 @@ AppEngine demo app at <a href="http://ob-demo.appspot.com">http://ob-demo.appspo
 	
 		
 			<tr>
-			<td class="name"><a href="hive/">hive</a></td>
+			<td class="name"><a href="demo-app/">demo-app</a></td>
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td style="width: auto"></td>
 			</tr>
