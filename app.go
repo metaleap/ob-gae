@@ -1,12 +1,16 @@
 package obgae
 
 import (
-	obcore "github.com/openbase/ob-core"
+	"net/http"
+
+	ob "github.com/openbase/ob-core"
+	obsrv "github.com/openbase/ob-core/server"
 )
 
 func init() {
-	if !obcore.Sandboxed {
-		obcore.Sandboxed = true
-		obcore.Init("")
+	if !ob.Sandboxed {
+		ob.Sandboxed = true
+		ob.Init("")
+		http.Handle("/", obsrv.Mux)
 	}
 }
