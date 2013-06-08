@@ -1,14 +1,14 @@
 package obgae
 
 import (
-	"appengine"
+	gae "appengine"
 )
 
 type ctxLogger struct {
-	appengine.Context
+	gae.Context
 }
 
-func newLogger(ctx appengine.Context) (me *ctxLogger) {
+func newLogger(ctx gae.Context) (me *ctxLogger) {
 	me = &ctxLogger{}
 	me.Context = ctx
 	return

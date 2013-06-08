@@ -1,8 +1,9 @@
 package obgae
 
 import (
-	"appengine"
 	"net/http"
+
+	gae "appengine"
 
 	ob "github.com/openbase/ob-core"
 	obsrv "github.com/openbase/ob-core/server"
@@ -14,8 +15,8 @@ func Init(hiveDir string) {
 	ob.Init(hiveDir, ob.NewLogger(nil))
 	obsrv.Init()
 	obsrv.On.Request.Serving.Add(func(rc *obsrv.RequestContext) {
-		ctx := appengine.NewContext(rc.Req)
+		ctx := gae.NewContext(rc.Req)
 		rc.Ctx, rc.Log = ctx, newLogger(ctx)
 	})
-	http.Handle("/", obsrv.Mux)
+	http.Handle("/", obsrv.Router)
 }

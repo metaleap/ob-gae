@@ -6,3 +6,6 @@ api_version: go1
 handlers:
 - url: /.*
   script: _go_app
+# NO need for any additional app.yaml URL handler rules:
+# static files in hive/client/pub and hive/usr/pub
+# are served automatically via _go_app
