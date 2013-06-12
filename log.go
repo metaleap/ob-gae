@@ -18,8 +18,3 @@ func (me *ctxLogger) Error(err error) error {
 	me.Errorf(err.Error())
 	return err
 }
-
-func (me *ctxLogger) Fatal(err error) {
-	me.Criticalf("FATAL: %+v", err)
-	panic(err)
-}
