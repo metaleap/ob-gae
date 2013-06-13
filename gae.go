@@ -22,14 +22,14 @@ func Init(hiveDir string) (err error) {
 		obsrv.Init()
 
 		var logMutex sync.Mutex
-		noopLog := ob.Opt.Log // we passed this above, but take from ob anyway
+		noopLog := ob.Log // we passed this above, but take from ob anyway
 
 		obsrv.On.Request.Serving.Add(func(rc *obsrv.RequestContext) {
 			ctx := gae.NewContext(rc.Req)
 			rc.Ctx, rc.Log = ctx, newLogger(ctx)
 			logMutex.Lock()
 			defer logMutex.Unlock()
-			ob.Opt.Log = rc.Log
+			ob.Log = rc.Log
 		})
 
 		obsrv.On.Request.Served.Add(func(rc *obsrv.RequestContext) {
@@ -37,8 +37,8 @@ func Init(hiveDir string) (err error) {
 			defer logMutex.Unlock()
 			// if the "global Log" is still ours, reset to original (noop-dummy in GAE case),
 			//	else another request took over meanwhile: then ignore
-			if ob.Opt.Log == rc.Log {
-				ob.Opt.Log = noopLog
+			if ob.Log == rc.Log {
+				ob.Log = noopLog
 			}
 		})
 
