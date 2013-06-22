@@ -1,2 +1,2 @@
-// To run OpenBase on AppEngine, import this package into yourapp.go, then call Init().
+// To run on App Engine, `import` this package into your_app.go and call `Init()`.
 package obgae
