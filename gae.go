@@ -1,27 +1,29 @@
 package obgae
 
 import (
+	"appengine"
 	"net/http"
-
-	gae "appengine"
 
 	ob "github.com/openbase/ob-core"
 	obsrv "github.com/openbase/ob-core/server"
 )
 
-//	Call this in the `init()` func of your GAE app --- see `demo-app/app.go`.
-//	This always binds a working URL handler to `/`, even if an error was encountered during `Init()`.
-func Init(hiveDir string) {
-	var err error
-	ob.Opt.Server, ob.Opt.Sandboxed = true, true
-	if err = ob.Init(hiveDir, ob.NewLogger(nil)); err == nil {
-		obsrv.Init()
-		initLogHooks()
-		http.Handle("/", obsrv.Router)
+//	Call this in the `init` func of your GAE app --- see `demo-app/app.go`.
+//
+//	This always binds a working URL handler to `/`, even if an `error` was encountered
+//	during initialization -- in which case, the initialization error message is rendered
+//	in plain-text with an HTTP 500 status to all client web requests, while each time
+//	also logging an Error-level message with GAE during such a request).
+func Init(hiveDirPath string) {
+	ctx, err := ob.NewCtx(hiveDirPath, true, true, ob.NewLogger(nil))
+	if err == nil {
+		handler := obsrv.NewHttpHandler(ctx)
+		initLogHooks(handler)
+		http.Handle("/", handler)
 	} else {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-			ctx := gae.NewContext(r)
-			ctx.Errorf("App could not be initialized: %#v", err)
+			gaeCtx := appengine.NewContext(r)
+			gaeCtx.Errorf("App could not be initialized: %#v", err)
 			http.Error(w, err.Error(), 500)
 		})
 	}
