@@ -10,7 +10,7 @@ import (
 
 func initLogHooks(handler *obsrv.HttpHandler) {
 	var logMutex ugo.MutexIf
-	ctx := handler.Ctx()
+	ctx := handler.Ctx
 	noopLog := ctx.Log // should be our logger that we passed in `Init`
 
 	handler.On.Request.PreServe.Add(func(rc *obsrv.RequestContext) {
