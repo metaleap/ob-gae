@@ -15,7 +15,7 @@ import (
 //	in plain-text with an HTTP 500 status to all client web requests (while each time
 //	also logging an Error-level message with GAE during such a request).
 func Init(hiveDirPath string) {
-	ctx, err := ob.NewCtx(hiveDirPath, ob.NewLogger(nil))
+	ctx, err := obsrv.NewCtx(hiveDirPath, ob.NewLogger(nil))
 	if err == nil {
 		handler := obsrv.NewHttpHandler(ctx)
 		initLogHooks(handler)
