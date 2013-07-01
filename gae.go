@@ -17,9 +17,8 @@ import (
 func Init(hiveDirPath string) {
 	ctx, err := obsrv.NewCtx(hiveDirPath, ob.NewLogger(nil))
 	if err == nil {
-		handler := obsrv.NewHttpHandler(ctx)
-		initLogHooks(handler)
-		http.Handle("/", handler)
+		initLogHooks(ctx)
+		http.Handle("/", &ctx.Http.Handler)
 	} else {
 		http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 			gaeCtx := appengine.NewContext(r)

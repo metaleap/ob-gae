@@ -1,3 +1,0 @@
-ob-prebuild
-# start python ${GAESDK}/dev_appserver.py $dir
-# start python ${GAESDK}/appcfg.py update $dir
