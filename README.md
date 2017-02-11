@@ -1,6 +1,4 @@
 # obgae
---
-    import "github.com/openbase/ob-gae"
 
 To run on App Engine, `import` this package into `your_app.go` and call `Init`.
 
@@ -18,6 +16,3 @@ encountered during initialization -- in which case, the initialization error
 message is rendered in plain-text with an HTTP 500 status to all client web
 requests (while each time also logging an Error-level message with GAE during
 such a request).
-
---
-**godocdown** http://github.com/robertkrimen/godocdown
